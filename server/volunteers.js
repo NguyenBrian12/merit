@@ -1,5 +1,6 @@
 var mongo = require('./mongo')
 var util = require('./utility')
+var events = require('./events')
 var hash = require('object-hash')
 
 function addVolunteer(data) {
@@ -109,12 +110,15 @@ async function addReferral(username, firstname, lastname) {
   await addPendingReward(username, date, desc, value)
 }
 
-async function addEvent(username, event_data) {
+async function addEvent(username, id) {
+  var event_data = await events.getEvent(id)
   var date = event_data.date
   var desc = event_data.name + " - " + event_data.description
   var value = event_data.reward
   await addPendingReward(username, date, desc, value)
 }
+
+exports.addEvent = addEvent
 
 var user_data = {
   username: 'jj92',
@@ -147,5 +151,5 @@ mongo.init().then(() => {
   // removePendingReward(username, id)
   // redeemReward(username, id)
   // addReferral(username, 'Forrest', 'Zhang')
-  // addEvent(username, event_data)
+  // addEvent(username, '684eda380d497fed2abf200f459176a94888bea1')
 })

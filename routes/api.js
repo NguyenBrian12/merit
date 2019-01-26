@@ -47,4 +47,12 @@ router.get('/get-events', (req, res) => {
   })
 })
 
+router.post('/add-event/:username/:id', (req, res) => {
+  var username = req.params.username
+  var id = req.params.id
+  volunteer.addEvent(username, id).then(() => {
+    res.end()
+  })
+})
+
 module.exports = router;
