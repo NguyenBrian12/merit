@@ -32,5 +32,6 @@ var data1 = {
 }
 
 mongo.init().then(() => {
-  addEvent(data1)
+  // addEvent(data1)
+  getData().then(d => console.log(d))
 })

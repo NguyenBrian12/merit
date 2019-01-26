@@ -132,5 +132,5 @@ mongo.init().then(() => {
   // addPendingReward(username, pr_date, pr_desc, pr_val)
   // removePendingReward(username, id)
   // redeemReward(username, id)
-  addReferral(username, 'Forrest', 'Zhang')
+  // addReferral(username, 'Forrest', 'Zhang')
 })
