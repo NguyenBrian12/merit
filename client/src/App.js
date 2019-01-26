@@ -4,6 +4,7 @@ import Rewards from "./Rewards";
 import Home from "./Home";
 import Header from "./Header";
 import Administrator from "./Administrator";
+import Events from "./Events";
 
 class App extends Component {
   render() {
@@ -13,7 +14,8 @@ class App extends Component {
           <Header />
           <Route exact path="/" component={Home} />
           <Route exact path="/rewards" component={Rewards} />
-          <Route exact path="/dashboard" component={Administrator} />
+          <Route exact path="/administrator" component={Administrator} />
+          <Route exact path="/events" component={Events} />
         </div>
       </BrowserRouter>
     );

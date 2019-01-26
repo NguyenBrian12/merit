@@ -19,7 +19,7 @@ class Rewards extends Component {
   render() {
     return (
       <div>
-        <Grid>
+        <Grid className="first">
           <Row>
             <Col md={8}>
               <h1>My Rewards</h1>
@@ -51,7 +51,12 @@ class Rewards extends Component {
                   <div>500 Points:</div>{" "}
                   <div>Front Page Feature on Make-A-Wish Website</div>
                 </td>
-                <td>
+                <td
+                  style={{
+                    backgroundImage:
+                      "https://cdn.pixabay.com/photo/2017/09/11/11/02/coaching-2738522_960_720.jpg"
+                  }}
+                >
                   <div>1000 Points:</div>{" "}
                   <div>Mentorship with a Make-A-Wish Executive</div>
                 </td>
