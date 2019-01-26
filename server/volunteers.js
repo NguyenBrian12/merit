@@ -109,13 +109,27 @@ async function addReferral(username, firstname, lastname) {
   await addPendingReward(username, date, desc, value)
 }
 
-var data1 = {
+async function addEvent(username, event_data) {
+  var date = event_data.date
+  var desc = event_data.name + " - " + event_data.description
+  var value = event_data.reward
+  await addPendingReward(username, date, desc, value)
+}
+
+var user_data = {
   username: 'jj92',
   firstname: 'Jeff',
   lastname: 'Jones',
   date: '2019-01-26',
   points: 150,
   pending_rewards: []
+}
+
+var event_data = {
+  name: 'Charity Concert',
+  description: 'Help organize our annual charity concert!',
+  date: '2019-02-10',
+  reward: 75
 }
 
 var username = 'jj92'
@@ -125,7 +139,7 @@ var pr_date = '2019-01-26'
 // var id = '858c442bb9e3171a2bd42c9dedd9f1ddc928f8fc'
 
 mongo.init().then(() => {
-  // addVolunteer(data1)
+  // addVolunteer(user_data)
   // getData(username).then(d => console.log(d))
   // setPoints(username, 100)
   // addPoints(username, 10)
@@ -133,4 +147,5 @@ mongo.init().then(() => {
   // removePendingReward(username, id)
   // redeemReward(username, id)
   // addReferral(username, 'Forrest', 'Zhang')
+  // addEvent(username, event_data)
 })

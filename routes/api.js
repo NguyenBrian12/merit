@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var volunteers = require("../server/volunteers");
+var events = require('../server/events')
 
 router.get("/ping", (req, res) => {
   var data = '"pong"';
@@ -36,6 +37,13 @@ router.post('/redeem-reward/:username/:id', (req, res) => {
   var id = req.params.id
   volunteers.redeemReward(username, id).then(() => {
     res.end()
+  })
+})
+
+router.get('/get-events', (req, res) => {
+  events.getData().then(d => {
+    var str = JSON.stringify(d)
+    res.send(str)
   })
 })
 
