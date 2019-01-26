@@ -23,7 +23,7 @@ router.get('/add-points/:username/:pts', (req, res) => {
   })
 })
 
-router.posts('/remove-pending-reward/:username/:id', (req, res) => {
+router.post('/remove-pending-reward/:username/:id', (req, res) => {
   var username = req.params.username
   var id = req.params.id
   volunteers.removePendingReward(username, id).then(() => {
@@ -31,7 +31,7 @@ router.posts('/remove-pending-reward/:username/:id', (req, res) => {
   })
 })
 
-router.posts('/redeem-reward/:username/:id', (req, res) => {
+router.post('/redeem-reward/:username/:id', (req, res) => {
   var username = req.params.username
   var id = req.params.id
   volunteers.redeemReward(username, id).then(() => {
