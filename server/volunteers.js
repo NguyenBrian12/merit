@@ -23,15 +23,15 @@ function getData(username) {
 
 exports.getData = getData
 
-function updateVolunteer(username, volunteer_data) {
-  var promise = new Promise((resolve, reject) => {
-    var db = mongo.getDB()
-    var q = {username: username}
-    db.collection("volunteers").updateOne(q, volunteer_data, (err, res) => {
-      
-    }
-  })
-}
+// function updateVolunteer(username, volunteer_data) {
+//   var promise = new Promise((resolve, reject) => {
+//     var db = mongo.getDB()
+//     var q = {username: username}
+//     db.collection("volunteers").updateOne(q, volunteer_data, (err, res) => {
+//
+//     }
+//   })
+// }
 
 // var volunteer_data = {
 //   username: 'jj92',
