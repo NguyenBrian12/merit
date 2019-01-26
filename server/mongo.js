@@ -1,5 +1,5 @@
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://forrest:forrest123@ds137283.mlab.com:37283/options"
+var url = "mongodb://forrest:testing123@ds213755.mlab.com:13755/merit"
 var db
 var connected
 
@@ -25,7 +25,7 @@ function connect()
 
 function getDB()
 {
-  return db.db("options")
+  return db.db("merit")
 }
 
 exports.getDB = getDB
