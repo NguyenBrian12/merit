@@ -55,7 +55,12 @@ a:hover {
   color: white;
   font-weight: normal;
 }
-
+.history-table {
+  background-color: #333333;
+  color: white;
+  font-weight: normal;
+  text-align: center;
+}
 .user-data{
   border: 1px solid black;
  padding: 10px;
@@ -122,4 +127,73 @@ a:hover {
 .fa-check{
 
   color: blue;
+}
+.reward{
+  border: solid;
+  border-width: 1px;
+  padding: 50px;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  
+}
+.reward-body{
+  text-align: center;
+}
+
+.img1 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFR6LKT4P/starbucksgift1.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 60% 50%;
+  filter:brightness(50%);
+}
+.img2 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFPCKK3U0/wishswag.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 60% 50%;
+  filter:brightness(50%);
+}
+.img3 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQAR3LAH/innoutgiftcard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:70% 50%;
+  filter:brightness(50%);
+}
+.img4 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQAR3LAH/innoutgiftcard.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:70% 50%;
+  filter:brightness(50%);
+}
+.img5 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:70% 50%;
+  filter:brightness(50%);
+}
+.img6 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:70% 50%;
+  filter:brightness(50%);
+}
+.img7 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:70% 50%;
+  filter:brightness(50%);
+}
+.img8 {
+  background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position:70% 50%;
+  filter:brightness(50%);
 }

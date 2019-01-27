@@ -1,24 +1,43 @@
 import React, { Component } from "react";
 import { Grid, Row, Col, FormGroup, Label, Button } from "react-bootstrap";
-import { GetEvents } from "./services/events.service";
-
+import { GetEvents, SignUpEvent, GetData } from "./services/events.service";
 class Events extends Component {
   state = {
-    pendingRewards: [],
+    events: [],
     searched: false
   };
   componentDidMount() {
-    this.getEvents = () => {
-      GetEvents().then(response => {
-        console.log(response);
-        const data = response.data;
-        this.setState({
-          pendingRewards: data.pending_rewards,
-          searched: true
-        });
+    GetEvents().then(response => {
+      console.log(response);
+      const data = response.data;
+      GetData().then(response2 => {
+        const userInfo = response2.data;
+        const pendingRewards = userInfo.pending_rewards;
+        console.log(pendingRewards);
+        const eventIds = [];
+        for (let reward of pendingRewards) {
+          eventIds.push(reward.id);
+        }
+        console.log(eventIds);
+        const filteredEvents = [];
+        for (var event of data) {
+          if (!eventIds.includes(event.id)) {
+            filteredEvents.push(event);
+          }
+        }
+        console.log(filteredEvents);
       });
-    };
+      this.setState({
+        events: data,
+        searched: true
+      });
+    });
   }
+  onSignUp = id => {
+    SignUpEvent(id).then(() => {
+      this.props.history.push("/");
+    });
+  };
   render() {
     return (
       <div>
@@ -29,34 +48,23 @@ class Events extends Component {
 
           {this.state.searched ? (
             <div>
-              <h2>Volunteer Info:</h2>
-              <Row>
-                <Col className="user-data" md={4}>
-                  <p>Name: {this.state.name}</p>
-                  <p>Points: {this.state.points}</p>
-                  <p>Joined: {this.state.joined}</p>
-                </Col>
-              </Row>
-              <h2>Pending Rewards:</h2>
               <table className="admin-table">
                 <tr>
+                  <th>Name</th>
                   <th>Date</th>
                   <th>Description</th>
-                  <th>Point Value</th>
-                  <th>Redeem</th>
-                  <th>Cancel</th>
+                  <th>Reward</th>
+                  <th>Sign Up</th>
                 </tr>
-                {this.state.pendingRewards
-                  ? this.state.pendingRewards.map(rewards => (
+                {this.state.events
+                  ? this.state.events.map(event => (
                       <tr>
-                        <td>{rewards.date}</td>
-                        <td>{rewards.description}</td>
-                        <td>{rewards.point_value}</td>
-                        <td onClick={() => this.onRedeem(rewards.id)}>
-                          <i className="fas fa-check" />
-                        </td>
-                        <td onClick={() => this.onCancel(rewards.id)}>
-                          <i className="fas fa-trash-alt" />
+                        <td>{event.name}</td>
+                        <td>{event.date}</td>
+                        <td>{event.description}</td>
+                        <td>{event.reward}</td>
+                        <td onClick={() => this.onSignUp(event.id)}>
+                          <i className="fas fa-sign-in-alt" />
                         </td>
                       </tr>
                     ))

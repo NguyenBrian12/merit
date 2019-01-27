@@ -73,7 +73,7 @@ class Administrator extends Component {
                   <p>Joined: {this.state.joined}</p>
                 </Col>
               </Row>
-              <h2>Pending Rewards:</h2>
+              <h2>Pending Completed Rewards:</h2>
               <table className="admin-table">
                 <tr>
                   <th>Date</th>
@@ -88,7 +88,9 @@ class Administrator extends Component {
                         <td>{rewards.date}</td>
                         <td>{rewards.description}</td>
                         <td>{rewards.point_value}</td>
-                        <td onClick={() => this.onRedeem(rewards.id)}>
+                        <td
+                          onClick={() => this.onRedeem(JSON.stringify(rewards))}
+                        >
                           <i className="fas fa-check" />
                         </td>
                         <td onClick={() => this.onCancel(rewards.id)}>
