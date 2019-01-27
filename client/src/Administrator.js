@@ -46,61 +46,73 @@ class Administrator extends Component {
       <div>
         <Grid className="first">
           <Row>
-            <h1>Administrator</h1>
+            <Col md={12}>
+              <h1>Administrator</h1>
+            </Col>
           </Row>
           <Row>
-            <FormGroup>
-              <Label>Search Username: </Label>
-              <input
-                className="inline"
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.onChange}
-              />
-              <button input="button" onClick={() => this.searchUser()}>
-                Search
-              </button>
-            </FormGroup>
+            <Col md={12}>
+              <FormGroup>
+                <Label>Search Username: </Label>
+                <input
+                  className="inline"
+                  type="text"
+                  name="username"
+                  value={this.state.username}
+                  onChange={this.onChange}
+                />
+                <button input="button" onClick={() => this.searchUser()}>
+                  Search
+                </button>
+              </FormGroup>
+            </Col>
           </Row>
           {this.state.searched ? (
-            <div>
-              <h2>Volunteer Info:</h2>
-              <Row>
-                <Col className="user-data" md={4}>
-                  <p>Name: {this.state.name}</p>
-                  <p>Points: {this.state.points}</p>
-                  <p>Joined: {this.state.joined}</p>
-                </Col>
-              </Row>
-              <h2>Pending Completed Rewards:</h2>
-              <table className="admin-table">
-                <tr>
-                  <th>Date</th>
-                  <th>Description</th>
-                  <th>Point Value</th>
-                  <th>Redeem</th>
-                  <th>Cancel</th>
-                </tr>
-                {this.state.pendingRewards
-                  ? this.state.pendingRewards.map(rewards => (
-                      <tr>
-                        <td>{rewards.date}</td>
-                        <td>{rewards.description}</td>
-                        <td>{rewards.point_value}</td>
-                        <td
-                          onClick={() => this.onRedeem(JSON.stringify(rewards))}
-                        >
-                          <i className="fas fa-check" />
-                        </td>
-                        <td onClick={() => this.onCancel(rewards.id)}>
-                          <i className="fas fa-trash-alt" />
-                        </td>
-                      </tr>
-                    ))
-                  : ""}
-              </table>
-            </div>
+            <Row>
+              <Col md={12}>
+                <h2>Volunteer Info:</h2>
+
+                <div className="user-data">
+                  Name: {this.state.name}
+                  <br />
+                  Points: {this.state.points}
+                  <br />
+                  Joined: {this.state.joined}
+                  <br />
+                </div>
+              </Col>
+              <Col md={12}>
+                <h2>Pending Completed Rewards:</h2>
+                <table className="admin-table">
+                  <tr>
+                    <th>Date</th>
+                    <th>Description</th>
+                    <th>Point Value</th>
+                    <th>Redeem</th>
+                    <th>Cancel</th>
+                  </tr>
+                  {this.state.pendingRewards
+                    ? this.state.pendingRewards.map(rewards => (
+                        <tr>
+                          <td>{rewards.date}</td>
+                          <td>{rewards.description}</td>
+                          <td>{rewards.point_value}</td>
+                          <td
+                            onClick={() =>
+                              this.onRedeem(JSON.stringify(rewards))
+                            }
+                          >
+                            <i className="fas fa-check" />
+                          </td>
+                          <td onClick={() => this.onCancel(rewards.id)}>
+                            <i className="fas fa-trash-alt" />
+                          </td>
+                        </tr>
+                      ))
+                    : ""}
+                </table>
+              </Col>
+            </Row>
           ) : (
             ""
           )}

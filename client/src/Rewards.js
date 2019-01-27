@@ -49,10 +49,15 @@ class Rewards extends Component {
             </Col>
           </Row>
           <Row>
-            <img src="https://files.slack.com/files-pri/TFLCGV43Z-FFQ238FAP/volunteerconnex.png" />
+            <Col md={12}>
+              <img src="https://files.slack.com/files-pri/TFLCGV43Z-FFQ238FAP/volunteerconnex.png" />
+            </Col>
           </Row>
+          <br />
           <Row>
-            <h2>Hi, {this.state.name}!</h2>
+            <Col md={12}>
+              <h2>Hi, {this.state.name}!</h2>
+            </Col>
           </Row>
           <Row>
             <h2>Rewards Available:</h2>
