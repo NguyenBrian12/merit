@@ -66,12 +66,17 @@ class Events extends Component {
       <div>
         <Grid className="first">
           <Row>
+          <Col md={12}>
             <h1>Events</h1>
+            </Col>
           </Row>
+          <Row>
+          <Col md={12}>
 
           {this.state.searched ? (
             <div>
-              <table className="admin-table">
+              <table className="table table-hover table-bordered">
+              <thead>
                 <tr>
                   <th>Name</th>
                   <th>Date</th>
@@ -79,6 +84,8 @@ class Events extends Component {
                   <th>Reward</th>
                   <th>Sign Up</th>
                 </tr>
+                </thead>
+                <tbody>
                 {this.state.events
                   ? this.state.events.map(event => (
                       <tr>
@@ -92,11 +99,14 @@ class Events extends Component {
                       </tr>
                     ))
                   : ""}
+                  </tbody>
               </table>
             </div>
           ) : (
             ""
           )}
+          </Col>
+          </Row>
         </Grid>
       </div>
     );

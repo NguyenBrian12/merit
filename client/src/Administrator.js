@@ -43,7 +43,6 @@ class Administrator extends Component {
   };
   render() {
     return (
-      <div>
         <Grid className="first">
           <Row>
             <Col md={12}>
@@ -74,22 +73,26 @@ class Administrator extends Component {
             </Col>
           </Row>
           {this.state.searched ? (
-            <Row>
-              <Col md={12}>
-                <h2>Volunteer Info:</h2>
-
-                <div className="user-data">
+            <div>
+              <Row>
+                <Col md={12}>
+                  <h2>Volunteer Info:</h2>
+                  <div className="user-data">
                   Name: {this.state.name}
                   <br />
                   Points: {this.state.points}
                   <br />
                   Joined: {this.state.joined}
                   <br />
-                </div>
-              </Col>
+                  </div>
+                </Col>
+              </Row>
+              <br/>
+              <Row>
               <Col md={12}>
                 <h2>Pending Completed Rewards:</h2>
-                <table className="admin-table">
+                <table className="table table-hover table-bordered">
+                <thead>
                   <tr>
                     <th>Date</th>
                     <th>Description</th>
@@ -97,6 +100,8 @@ class Administrator extends Component {
                     <th>Redeem</th>
                     <th>Cancel</th>
                   </tr>
+                  </thead>
+                  <tbody>
                   {this.state.pendingRewards
                     ? this.state.pendingRewards.map(rewards => (
                         <tr>
@@ -116,15 +121,16 @@ class Administrator extends Component {
                         </tr>
                       ))
                     : ""}
+                    </tbody>
                 </table>
               </Col>
             </Row>
+            </div>
           ) : (
             ""
           )}
         </Grid>
-      </div>
-    );
+    )
   }
 }
 export default Administrator;

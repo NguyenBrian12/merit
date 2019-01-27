@@ -149,7 +149,8 @@ class EventManager extends Component {
           </Row>
           {this.state.searched ? (
             <div>
-              <table className="admin-table">
+              <table className="table table-hover table-bordered">
+              <thead>
                 <tr>
                   <th>Name</th>
                   <th>Date</th>
@@ -158,6 +159,8 @@ class EventManager extends Component {
                   <th>Edit Event</th>
                   <th>Delete Event</th>
                 </tr>
+                </thead>
+                <tbody>
                 {this.state.events
                   ? this.state.events.map(event => (
                       <tr>
@@ -174,6 +177,7 @@ class EventManager extends Component {
                       </tr>
                     ))
                   : ""}
+                  </tbody>
               </table>
             </div>
           ) : (
