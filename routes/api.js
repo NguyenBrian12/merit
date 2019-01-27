@@ -65,7 +65,7 @@ router.post('/remove-event/:id', (req, res) => {
 router.post('/add-event-reward/:username/:id', (req, res) => {
   var username = req.params.username
   var id = req.params.id
-  volunteer.addEventReward(username, id).then(() => {
+  volunteers.addEventReward(username, id).then(() => {
     res.end()
   })
 })

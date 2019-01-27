@@ -7,7 +7,9 @@ class Rewards extends Component {
     points: null,
     name: "",
     pending_rewards: [],
-    eventHistory: []
+    eventHistory: [],
+    disp_confirm: false,
+    prize_value: 0
   };
   componentDidMount() {
     GetData().then(response => {
@@ -27,6 +29,12 @@ class Rewards extends Component {
         events: eventData
       });
     });
+  }
+  selectPrize(pts) {
+    this.setState({
+      disp_confirm: true,
+      prize_value: pts
+    })
   }
   render() {
     return (
@@ -50,22 +58,20 @@ class Rewards extends Component {
           </Row>
           <Row>
             <Col md={12}>
-              <img src="https://files.slack.com/files-pri/TFLCGV43Z-FFQ238FAP/volunteerconnex.png" />
+              <img className="banner" src="https://files.slack.com/files-pri/TFLCGV43Z-FFQ238FAP/volunteerconnex.png" />
             </Col>
           </Row>
           <br />
           <Row>
             <Col md={12}>
               <h2>Hi, {this.state.name}!</h2>
+              <h2>Rewards Available:</h2>
             </Col>
-          </Row>
-          <Row>
-            <h2>Rewards Available:</h2>
           </Row>
           <Row>
             <Col md={3} className="reward img1">
               {" "}
-              <div className="overlay">
+              <div onClick={() => this.selectPrize(100)} className="overlay">
                 <div>100 Points:</div>
                 <div>Free Small Coffee at Starbucks</div>
               </div>
@@ -100,66 +106,62 @@ class Rewards extends Component {
               <div>Mentorship with a Make-A-Wish Executive</div>
             </Col>
           </Row>
+          <br/>
           <Row>
+          <Col md={12}>
             <h2>Reward History</h2>
+            </Col>
           </Row>
           <Row>
-            <Col md={4} className="history-table">
-              Date
-            </Col>
-            <Col md={4} className="history-table">
-              Description
-            </Col>
-            <Col md={4} className="history-table">
-              Points Gained
-            </Col>
-          </Row>
+          <Col md={12}>
+          <table className='admin-table'>
+          <tbody>
+          <tr>
+          <th>Date</th>
+          <th>Description</th>
+          <th>Points Gained</th>
+          </tr>
           {this.state.eventHistory
             ? this.state.eventHistory.map(history => (
-                <Row>
-                  <Col md={4} className="reward-body">
-                    {history.date}
-                  </Col>
-                  <Col md={4} className="reward-body">
-                    {history.description}
-                  </Col>
-                  <Col md={4} className="reward-body">
-                    {history.point_value}
-                  </Col>
-                </Row>
+                <tr>
+                  <td>{history.date}</td>
+                  <td>{history.description}</td>
+                  <td>{history.point_value}</td>
+                </tr>
               ))
-            : ""}
-
+          : ""}
+          </tbody>
+          </table>
+          </Col>
+          </Row>
+          <br/>
           <Row>
+            <Col md={12}>
             <h2>Pending Rewards</h2>
+            </Col>
           </Row>
           <Row>
-            <Col md={4} className="history-table">
-              Date
-            </Col>
-            <Col md={4} className="history-table">
-              Description
-            </Col>
-            <Col md={4} className="history-table">
-              Reward
+            <Col md={12}>
+            <table className="admin-table">
+            <tbody>
+            <tr>
+            <th>Date</th>
+            <th>Description</th>
+            <th>Reward</th>
+            </tr>
+            {this.state.pending_rewards
+              ? this.state.pending_rewards.map(event => (
+                  <tr>
+                    <td>{event.date}</td>
+                    <td>{event.description}</td>
+                    <td>{event.point_value}</td>
+                  </tr>
+                ))
+              : ""}
+            </tbody>
+            </table>
             </Col>
           </Row>
-
-          {this.state.pending_rewards
-            ? this.state.pending_rewards.map(event => (
-                <Row>
-                  <Col md={4} className="reward-body">
-                    <p>{event.date}</p>
-                  </Col>
-                  <Col md={4} className="reward-body">
-                    <p>{event.description}</p>
-                  </Col>
-                  <Col md={4} className="reward-body">
-                    <p>{event.point_value}</p>
-                  </Col>
-                </Row>
-              ))
-            : ""}
         </Grid>
       </div>
     );

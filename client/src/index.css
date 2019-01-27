@@ -6,6 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.banner {
+  width: 100%;
+}
 .inline{
   display:inline-block
 }
@@ -149,7 +156,9 @@ a:hover {
   text-align: center;
   width: 100%;
   font-size: 20px;
-  
+}
+.reward:hover {
+  cursor:pointer;
 }
 .reward-body{
   text-align: center;
@@ -187,14 +196,14 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
- 
+
 }
 .img4 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQAR3LAH/innoutgiftcard.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
-  
+
 }
 .img5 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
@@ -215,7 +224,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
- 
+
 }
 .img8 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFPCEB2F2/mentoring.jpg");
