@@ -29,6 +29,19 @@ function addEvent(data) {
 
 exports.addEvent = addEvent
 
+function removeEvent(id) {
+  var promise = new Promise((resolve, reject) => {
+    var db = mongo.getDB()
+    var q = {id: id}
+    db.collection('events').deleteOne(q, (err, res) => {
+      resolve()
+    })
+  })
+  return promise
+}
+
+exports.removeEvent = removeEvent
+
 function getData() {
   var promise = new Promise((resolve, reject) => {
     var db = mongo.getDB()
@@ -42,15 +55,16 @@ function getData() {
 exports.getData = getData
 
 var data1 = {
-  name: 'Charity Concert',
-  description: 'Help organize our annual charity concert!',
-  date: '2019-02-10',
-  reward: 75
+  name: 'Smash Bros Tourney',
+  description: 'Smash Bros for Charity',
+  date: '2019-01-30',
+  reward: 25
 }
 
 var eid = '684eda380d497fed2abf200f459176a94888bea1'
 
 mongo.init().then(() => {
   // addEvent(data1)
+  removeEvent('a4f0abdda0b960321d99d046f6b3281d7ef71ddb')
   // getData().then(d => console.log(d))
 })
