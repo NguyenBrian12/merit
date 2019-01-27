@@ -57,12 +57,11 @@ function setPendingRewards(username, rewards) {
   return promise
 }
 
-async function addPendingReward(username, pr_date, pr_desc, pr_val) {
+async function addPendingReward(username, pr_id, pr_date, pr_desc, pr_val) {
   var data = await getData(username)
   var rewards = data.pending_rewards
-  var id = hash([pr_date, pr_desc, pr_val])
   rewards.push({
-    id: id,
+    id: pr_id,
     date: pr_date,
     description: pr_desc,
     point_value: pr_val
@@ -107,15 +106,16 @@ async function addReferral(username, firstname, lastname) {
   var name = firstname + ' ' + lastname
   var desc = 'referral for ' + name
   var value = 100
-  await addPendingReward(username, date, desc, value)
+  var id = hash([date, desc, value])
+  await addPendingReward(username, id, date, desc, value)
 }
 
-async function addEvent(username, id) {
-  var event_data = await events.getEvent(id)
+async function addEvent(username, event_id) {
+  var event_data = await events.getEvent(event_id)
   var date = event_data.date
   var desc = event_data.name + " - " + event_data.description
   var value = event_data.reward
-  await addPendingReward(username, date, desc, value)
+  await addPendingReward(username, event_id, date, desc, value)
 }
 
 exports.addEvent = addEvent
