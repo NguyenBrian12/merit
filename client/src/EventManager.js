@@ -43,16 +43,22 @@ class EventManager extends Component {
       date: this.state.date,
       description: this.state.description,
       reward: this.state.reward
-    }).then(() => {
-      GetEvents().then(response => {
-        console.log(response);
-        const data = response.data;
-        this.setState({
-          events: data,
-          searched: true
+    })
+      .then(() => {
+        GetEvents().then(response => {
+          console.log(response);
+          const data = response.data;
+          this.setState({
+            events: data,
+            searched: true,
+            name: "",
+            description: "",
+            date: "",
+            reward: ""
+          });
         });
-      });
-    });
+      })
+      .then();
   };
   render() {
     return (
@@ -98,8 +104,8 @@ class EventManager extends Component {
                 <div>
                   <Label>Description: </Label>
                 </div>
-                <textArea
-                  className="inline textbox"
+                <input
+                  className="inline"
                   type="text"
                   name="description"
                   value={this.state.description}
@@ -147,7 +153,7 @@ class EventManager extends Component {
                   ? this.state.events.map(event => (
                       <tr>
                         <td>{event.name}</td>
-                        <td>{event.date}</td>
+                        <td className="noWrap">{event.date}</td>
                         <td>{event.description}</td>
                         <td>{event.reward}</td>
                         <td onClick={() => this.onEdit(event.id)}>

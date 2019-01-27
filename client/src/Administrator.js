@@ -53,15 +53,20 @@ class Administrator extends Component {
           <Row>
             <Col md={12}>
               <FormGroup>
-                <Label>Search Username: </Label>
+                <Label style={{ fontSize: "18px" }}>Search Username: </Label>
                 <input
                   className="inline"
                   type="text"
                   name="username"
                   value={this.state.username}
                   onChange={this.onChange}
+                  style={{ fontSize: "18px" }}
                 />
-                <button input="button" onClick={() => this.searchUser()}>
+                <button
+                  input="button"
+                  style={{ fontSize: "18px" }}
+                  onClick={() => this.searchUser()}
+                >
                   Search
                 </button>
               </FormGroup>

@@ -60,7 +60,7 @@ class Events extends Component {
                   ? this.state.events.map(event => (
                       <tr>
                         <td>{event.name}</td>
-                        <td>{event.date}</td>
+                        <td className="noWrap">{event.date}</td>
                         <td>{event.description}</td>
                         <td>{event.reward}</td>
                         <td onClick={() => this.onSignUp(event.id)}>
