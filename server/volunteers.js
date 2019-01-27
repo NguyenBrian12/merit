@@ -45,6 +45,13 @@ async function addPoints(username, pts) {
 
 exports.addPoints = addPoints
 
+async function subtractPoints(username, pts) {
+  var data = await getData(username)
+  await setPoints(username, data.points - pts)
+}
+
+exports.subtractPoints = subtractPoints
+
 function setPendingRewards(username, rewards) {
   var promise = new Promise((resolve, reject) => {
     var db = mongo.getDB()
