@@ -32,10 +32,10 @@ router.post('/remove-pending-reward/:username/:id', (req, res) => {
   })
 })
 
-router.post('/redeem-reward/:username/:id', (req, res) => {
+router.post('/redeem-reward/:username/:reward_str', (req, res) => {
   var username = req.params.username
-  var id = req.params.id
-  volunteers.redeemReward(username, id).then(() => {
+  var reward = JSON.parse(req.params.reward_str)
+  volunteers.redeemReward(username, reward).then(() => {
     res.end()
   })
 })

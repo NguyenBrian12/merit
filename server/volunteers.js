@@ -80,23 +80,12 @@ async function removePendingReward(username, id) {
 
 exports.removePendingReward = removePendingReward
 
-async function getPendingRewards(username) {
-  var data = await getData(username)
-  return data.pending_rewards
-}
-
-async function getPendingReward(username, id) {
-  var rewards = await getPendingRewards(username)
-  for (var reward of rewards) {
-    if(reward.id == id) return reward
-  }
-}
-
-async function redeemReward(username, id) {
-  var reward = await getPendingReward(username, id)
+async function redeemReward(username, reward) {
+  var id = reward.id
   var redeem_value = reward.point_value
   await addPoints(username, redeem_value)
   await removePendingReward(username, id)
+  await addToRewardsHistory(username, reward)
 }
 
 exports.redeemReward = redeemReward
@@ -120,16 +109,37 @@ async function addEvent(username, event_id) {
 
 exports.addEvent = addEvent
 
+function setRewardsHistory(username, rewards) {
+  var promise = new Promise((resolve, reject) => {
+    var db = mongo.getDB()
+    var q = {username: username}
+    var newvals = { $set: { rewards_history: rewards }}
+    db.collection("volunteers").updateOne(q, newvals, (err, res) => {
+      resolve()
+    })
+  })
+  return promise
+}
+
+async function addToRewardsHistory(username, reward) {
+  var data = await getData(username)
+  var rewards = data.rewards_history
+  rewards.push(reward)
+  await setRewardsHistory(username, rewards)
+}
+
 var user_data = {
   username: 'jj92',
   firstname: 'Jeff',
   lastname: 'Jones',
   date: '2019-01-26',
   points: 150,
-  pending_rewards: []
+  pending_rewards: [],
+  rewards_history: []
 }
 
 var event_data = {
+  id: '684eda380d497fed2abf200f459176a94888bea1',
   name: 'Charity Concert',
   description: 'Help organize our annual charity concert!',
   date: '2019-02-10',
@@ -152,4 +162,5 @@ mongo.init().then(() => {
   // redeemReward(username, id)
   // addReferral(username, 'Forrest', 'Zhang')
   // addEvent(username, '684eda380d497fed2abf200f459176a94888bea1')
+  // addToRewardsHistory('jj92', event_data)
 })
