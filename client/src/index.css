@@ -6,6 +6,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.table th {
+  /* font-weight: normal !important; */
+  /* font-size: 20px; */
+}
 .confirm {
   padding: 5px 15px;
   font-size: 20px;
@@ -65,18 +69,12 @@ a:hover {
 }
 .admin-table {
   width: 100%;
+  /* border: none !important; */
 }
 .admin-table th{
-  background-color: #002249;
+  background-color: #aaa;
   color: white;
   font-weight: normal;
-  font-size: 20px;
-}
-.history-table {
-  background-color: #002249;
-  color: white;
-  font-weight: normal;
-  text-align: center;
   font-size: 20px;
 }
 .user-data{
@@ -88,17 +86,16 @@ a:hover {
 .log-table th {
   font-weight: normal;
 }
-
 .log-table th, .log-table td {
   border: 1px solid black;
   line-height: 1em;
   padding: 100px;
   font-size: 30px;
   text-align: center;
-
 }
 .admin-table th, .admin-table td {
-  border: 1px solid black;
+  /* border: 1px solid #333; */
+  border: none;
   line-height: 1em;
   padding: 10px;
   font-size: 1em;
@@ -178,12 +175,15 @@ a:hover {
   color: #0057b8;
 }
 .reward{
-  border: solid;
-  border-width: 1px;
+  border: 0px;
+  height: 250px;
+  margin-bottom: 25px;
+  border-radius: 5px;
   padding: 50px;
   text-align: center;
   width: 100%;
   font-size: 20px;
+  box-shadow: 5px 5px 15px grey;
 }
 .reward:hover {
   cursor:pointer;
@@ -224,14 +224,14 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
- 
+
 }
 .img4 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQAR3LAH/innoutgiftcard.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
-  
+
 }
 .img5 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
@@ -252,7 +252,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
- 
+
 }
 .img8 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFPCEB2F2/mentoring.jpg");
@@ -264,4 +264,29 @@ a:hover {
 .textbox{
   width: 50%;
   height: 200px !important;
+}
+
+.ip2 {
+ border-radius: 25px;
+ border: 1px solid #002249;
+ padding: 20px;
+ width: 200px;
+ height: 15px;
+}
+.button{
+ background-color: #002249;
+ color: white;
+ border-radius: 25px;
+ border: 1px solid #002249;
+ width: 100px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.background{
+ background-image: linear-gradient(to right top, #002249, #002b5d, #003571, #003f86, #00499b, #354da8, #5550b3, #7251bc
+, #a047b6, #c73aa9, #e72b95, #ff267c);
+ background-size: cover;
+ background-repeat: no-repeat;
+
 }

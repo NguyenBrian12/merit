@@ -123,41 +123,29 @@ class Rewards extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={3} onClick={() => this.selectPrize('Starbucks Giftcard', 100)} className="reward img1">
-              {" "}
-              <div className="overlay">
-                <div>100 Points:</div>
-                <div>Free Small Coffee at Starbucks</div>
-              </div>
+            <Col md={3} onClick={() => this.selectPrize('Starbucks Giftcard', 100)}>
+              <div className='reward img1' />
             </Col>
-            <Col md={3} className="reward img2">
-              {" "}
-              <div className="pic">
-                <div>250 Points:</div> <div>Make-A-Wish Swag Bag</div>
-              </div>
+            <Col md={3}>
+              <div className='reward img2' />
             </Col>
-            <Col md={3} className="reward img3">
-              {" "}
-              <div>400 Points:</div> <div>In-N-Out Giftcard</div>
+            <Col md={3}>
+              <div className='reward img3' />
             </Col>
-            <Col md={3} className="reward img4">
-              {" "}
-              <div>500 Points:</div>{" "}
-              <div>Front Page Feature on the Make-A-Wish Website</div>
+            <Col md={3}>
+              <div className='reward img4' />
             </Col>
-            <Col md={3} className="reward img5">
-              {" "}
-              <div>600 Points:</div> <div>LA Ram's VIP Swag Box</div>
+            <Col md={3}>
+              <div className='reward img5' />
             </Col>
-            <Col md={3} className="reward img6" />
-            <Col md={3} className="reward img7">
-              {" "}
-              <div>800 Points:</div> <div>Round Trip Ticket From Jet Blue</div>
+            <Col md={3}>
+              <div className='reward img6' />
             </Col>
-            <Col md={3} className="reward img8">
-              {" "}
-              <div>1000 Points:</div>{" "}
-              <div>Mentorship with a Make-A-Wish Executive</div>
+            <Col md={3}>
+              <div className='reward img7' />
+            </Col>
+            <Col md={3}>
+              <div className='reward img8' />
             </Col>
           </Row>
           {this.renderQuery()}
@@ -171,13 +159,15 @@ class Rewards extends Component {
           </Row>
           <Row>
           <Col md={12}>
-          <table className='admin-table'>
-          <tbody>
+          <table className='table table-hover table-bordered'>
+          <thead>
           <tr>
           <th>Date</th>
           <th>Description</th>
-          <th>Points Gained</th>
+          <th>Point Value</th>
           </tr>
+          </thead>
+          <tbody>
           {this.state.eventHistory
             ? this.state.eventHistory.map(history => (
                 <tr>
@@ -199,13 +189,15 @@ class Rewards extends Component {
           </Row>
           <Row>
             <Col md={12}>
-            <table className="admin-table">
-            <tbody>
+            <table className="table table-hover table-bordered">
+            <thead>
             <tr>
             <th>Date</th>
             <th>Description</th>
-            <th>Reward</th>
+            <th>Point Value</th>
             </tr>
+            </thead>
+            <tbody>
             {this.state.pending_rewards
               ? this.state.pending_rewards.map(event => (
                   <tr>
