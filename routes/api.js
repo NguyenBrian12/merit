@@ -55,6 +55,13 @@ router.post('/add-event/:event_data', (req, res) => {
   })
 })
 
+router.post('/remove-event/:id', (req, res) => {
+  var id = req.params.id
+  events.removeEvent(id).then(() => {
+    res.end()
+  })
+})
+
 router.post('/add-event-reward/:username/:id', (req, res) => {
   var username = req.params.username
   var id = req.params.id
