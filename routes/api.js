@@ -16,14 +16,6 @@ router.get("/get-volunteer-data/:username", (req, res) => {
   });
 });
 
-router.post('/add-points/:username/:pts', (req, res) => {
-  var username = req.params.username
-  var pts = req.params.points
-  volunteers.addPoints(username, pts).then(() => {
-    res.end()
-  })
-})
-
 router.post('/subtract-points/:username/:pts', (req, res) => {
   var username = req.params.username
   var pts = req.params.points
