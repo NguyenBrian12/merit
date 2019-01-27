@@ -99,6 +99,7 @@ a:hover {
 }
 .container {
   margin-bottom: 60px;
+  
 }
 
 .header {
@@ -245,4 +246,27 @@ a:hover {
 .textbox{
   width: 50%;
   height: 200px !important;
+}
+.ip2 {
+  border-radius: 25px;
+  border: 1px solid #002249;
+  padding: 20px; 
+  width: 200px;
+  height: 15px;    
+}
+.button{
+  background-color: #002249;
+  color: white;
+  border-radius: 25px;
+  border: 1px solid #002249;
+  width: 100px;
+}
+
+tr:nth-child(even) {background-color: #f2f2f2;}
+
+.background{
+  background-image: linear-gradient(to right top, #002249, #002b5d, #003571, #003f86, #00499b, #354da8, #5550b3, #7251bc, #a047b6, #c73aa9, #e72b95, #ff267c);
+  background-size: cover;
+  background-repeat: no-repeat;
+ 
 }

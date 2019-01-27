@@ -55,7 +55,7 @@ class Administrator extends Component {
               <FormGroup>
                 <Label style={{ fontSize: "18px" }}>Search Username: </Label>
                 <input
-                  className="inline"
+                  className="inline ip2"
                   type="text"
                   name="username"
                   value={this.state.username}
@@ -63,6 +63,7 @@ class Administrator extends Component {
                   style={{ fontSize: "18px" }}
                 />
                 <button
+                  className="button"
                   input="button"
                   style={{ fontSize: "18px" }}
                   onClick={() => this.searchUser()}
