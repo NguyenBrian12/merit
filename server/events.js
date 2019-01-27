@@ -65,10 +65,6 @@ var eid = '684eda380d497fed2abf200f459176a94888bea1'
 
 mongo.init().then(() => {
   // addEvent(data1)
-<<<<<<< HEAD
   // removeEvent('a4f0abdda0b960321d99d046f6b3281d7ef71ddb')
-=======
-  removeEvent('a4f0abdda0b960321d99d046f6b3281d7ef71ddb')
->>>>>>> 7c87b4d392e52ed8611c1f1ee9320fe3afc8a401
   // getData().then(d => console.log(d))
 })
