@@ -43,16 +43,22 @@ class EventManager extends Component {
       date: this.state.date,
       description: this.state.description,
       reward: this.state.reward
-    }).then(() => {
-      GetEvents().then(response => {
-        console.log(response);
-        const data = response.data;
-        this.setState({
-          events: data,
-          searched: true
+    })
+      .then(() => {
+        GetEvents().then(response => {
+          console.log(response);
+          const data = response.data;
+          this.setState({
+            events: data,
+            searched: true,
+            name: "",
+            description: "",
+            date: "",
+            reward: ""
+          });
         });
-      });
-    });
+      })
+      .then();
   };
   render() {
     return (
@@ -65,16 +71,17 @@ class EventManager extends Component {
           </Row>
           <Row>
             <Col md={12}>
-              <h3>Add New Event</h3>
+              <h2>Add New Event</h2>
             </Col>
           </Row>
           <Row>
             <Col md={12}>
               <FormGroup>
                 <div>
-                  <Label>Event Name: </Label>
+                  <Label style={{ fontSize: "18px" }}>Event Name: </Label>
                 </div>
                 <input
+                  style={{ fontSize: "18px" }}
                   className="inline"
                   type="text"
                   name="name"
@@ -84,9 +91,10 @@ class EventManager extends Component {
               </FormGroup>
               <FormGroup>
                 <div>
-                  <Label>Date: </Label>
+                  <Label style={{ fontSize: "18px" }}>Date: </Label>
                 </div>
                 <input
+                  style={{ fontSize: "18px" }}
                   className="inline"
                   type="text"
                   name="date"
@@ -96,10 +104,11 @@ class EventManager extends Component {
               </FormGroup>
               <FormGroup>
                 <div>
-                  <Label>Description: </Label>
+                  <Label style={{ fontSize: "18px" }}>Description: </Label>
                 </div>
-                <textArea
-                  className="inline textbox"
+                <input
+                  style={{ fontSize: "18px" }}
+                  className="inline"
                   type="text"
                   name="description"
                   value={this.state.description}
@@ -108,9 +117,10 @@ class EventManager extends Component {
               </FormGroup>
               <FormGroup>
                 <div>
-                  <Label>Reward: </Label>
+                  <Label style={{ fontSize: "18px" }}>Reward: </Label>
                 </div>
                 <input
+                  style={{ fontSize: "18px" }}
                   className="inline"
                   type="text"
                   name="reward"
@@ -119,7 +129,11 @@ class EventManager extends Component {
                 />
               </FormGroup>
               <div>
-                <button input="button" onClick={() => this.submitEvent()}>
+                <button
+                  style={{ fontSize: "18px" }}
+                  input="button"
+                  onClick={() => this.submitEvent()}
+                >
                   Submit
                 </button>
               </div>
@@ -129,7 +143,7 @@ class EventManager extends Component {
           <br />
           <Row>
             <Col md={12}>
-              <h3>Events List</h3>
+              <h2>Events List</h2>
             </Col>
           </Row>
           {this.state.searched ? (
@@ -147,7 +161,7 @@ class EventManager extends Component {
                   ? this.state.events.map(event => (
                       <tr>
                         <td>{event.name}</td>
-                        <td>{event.date}</td>
+                        <td className="nowrap">{event.date}</td>
                         <td>{event.description}</td>
                         <td>{event.reward}</td>
                         <td onClick={() => this.onEdit(event.id)}>

@@ -67,12 +67,13 @@ a:hover {
   width: 100%;
 }
 .admin-table th{
-  background-color: #333333;
+  background-color: #002249;
   color: white;
   font-weight: normal;
+  font-size: 20px;
 }
 .history-table {
-  background-color: #333333;
+  background-color: #002249;
   color: white;
   font-weight: normal;
   text-align: center;
@@ -81,7 +82,8 @@ a:hover {
 .user-data{
   border: 1px solid black;
  padding: 10px;
- width: 50%
+ width: 50%;
+ font-size: 20px;
 }
 .log-table th {
   font-weight: normal;
@@ -101,6 +103,7 @@ a:hover {
   padding: 10px;
   font-size: 1em;
   text-align: center;
+  font-size: 20px;
 }
 .container {
   margin-bottom: 60px;
@@ -168,6 +171,12 @@ a:hover {
 .fa-trash-alt{
   color: #0057b8;
 }
+.fa-sign-in-alt:hover{
+  cursor:pointer;
+}
+.fa-sign-in-alt{
+  color: #0057b8;
+}
 .reward{
   border: solid;
   border-width: 1px;
@@ -215,14 +224,14 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
-
+ 
 }
 .img4 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQAR3LAH/innoutgiftcard.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
-
+  
 }
 .img5 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFQ4RAK6W/laramsbox.jpg");
@@ -243,7 +252,7 @@ a:hover {
   background-size: cover;
   background-repeat: no-repeat;
   background-position:70% 50%;
-
+ 
 }
 .img8 {
   background-image: url("https://files.slack.com/files-pri/TFLCGV43Z-FFPCEB2F2/mentoring.jpg");
