@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { Grid, Row, Col, FormGroup, Label, Button } from "react-bootstrap";
-import { RedeemReward, CancelReward } from "./services/administator.service";
-import { GetEvents, SubmitEvent } from "./services/events.service";
+import { GetEvents, SubmitEvent, CancelEvent } from "./services/events.service";
 class EventManager extends Component {
   state = {
     name: "",
     description: "",
     date: "",
-    reward: null,
+    reward: "",
     events: []
   };
   componentDidMount() {
@@ -25,14 +24,17 @@ class EventManager extends Component {
     const { name, value } = e.target;
     this.setState({ [name]: value });
   };
-  onEdit = id => {
-    RedeemReward(this.state.username, id).then(() => {
-      this.searchUser();
-    });
-  };
+  onEdit = () => {};
   onCancel = id => {
-    CancelReward(this.state.username, id).then(() => {
-      this.searchUser();
+    CancelEvent(id).then(() => {
+      GetEvents().then(response => {
+        console.log(response);
+        const data = response.data;
+        this.setState({
+          events: data,
+          searched: true
+        });
+      });
     });
   };
   submitEvent = () => {
@@ -57,55 +59,79 @@ class EventManager extends Component {
       <div>
         <Grid className="first">
           <Row>
-            <h1>Events</h1>
+            <Col md={12}>
+              <h1>Events</h1>
+            </Col>
           </Row>
           <Row>
-            <h3>Add New Event</h3>
+            <Col md={12}>
+              <h3>Add New Event</h3>
+            </Col>
           </Row>
-          <FormGroup>
-            <Label>Event Name: </Label>
-            <input
-              className="inline"
-              type="text"
-              name="name"
-              value={this.state.name}
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Date: </Label>
-            <input
-              className="inline"
-              type="text"
-              name="date"
-              value={this.state.date}
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Description: </Label>
-            <input
-              className="inline"
-              type="text"
-              name="name"
-              value={this.state.description}
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label>Reward: </Label>
-            <input
-              className="inline"
-              type="text"
-              name="reward"
-              value={this.state.reward}
-              onChange={this.onChange}
-            />
-          </FormGroup>
-          <button input="button" onClick={() => this.submitEvent()}>
-            Submit
-          </button>
-
+          <Row>
+            <Col md={12}>
+              <FormGroup>
+                <div>
+                  <Label>Event Name: </Label>
+                </div>
+                <input
+                  className="inline"
+                  type="text"
+                  name="name"
+                  value={this.state.name}
+                  onChange={this.onChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <div>
+                  <Label>Date: </Label>
+                </div>
+                <input
+                  className="inline"
+                  type="text"
+                  name="date"
+                  value={this.state.date}
+                  onChange={this.onChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <div>
+                  <Label>Description: </Label>
+                </div>
+                <textArea
+                  className="inline textbox"
+                  type="text"
+                  name="description"
+                  value={this.state.description}
+                  onChange={this.onChange}
+                />
+              </FormGroup>
+              <FormGroup>
+                <div>
+                  <Label>Reward: </Label>
+                </div>
+                <input
+                  className="inline"
+                  type="text"
+                  name="reward"
+                  value={this.state.reward}
+                  onChange={this.onChange}
+                />
+              </FormGroup>
+              <div>
+                <button input="button" onClick={() => this.submitEvent()}>
+                  Submit
+                </button>
+              </div>
+            </Col>
+          </Row>
+          <br />
+          <br />
+          <Row>
+            <Col md={12}>
+              <h3>Events List</h3>
+            </Col>
+          </Row>
           {this.state.searched ? (
             <div>
               <table className="admin-table">

@@ -6,7 +6,7 @@ class Rewards extends Component {
   state = {
     points: null,
     name: "",
-    events: [],
+    pending_rewards: [],
     eventHistory: []
   };
   componentDidMount() {
@@ -16,7 +16,8 @@ class Rewards extends Component {
       this.setState({
         points: data.points,
         name: data.firstname,
-        eventHistory: data.rewards_history
+        eventHistory: data.rewards_history,
+        pending_rewards: data.pending_rewards
       });
     });
     GetEvents().then(response => {
@@ -36,10 +37,19 @@ class Rewards extends Component {
               <h1>My Rewards</h1>
             </Col>
             <Col md={4}>
-              <h2 style={{ border: "solid" }}>
+              <h2
+                style={{
+                  border: "solid",
+                  color: "#0057b8",
+                  textAlign: "center"
+                }}
+              >
                 Current Points: {this.state.points}
               </h2>
             </Col>
+          </Row>
+          <Row>
+            <img src="https://files.slack.com/files-pri/TFLCGV43Z-FFQ238FAP/volunteerconnex.png" />
           </Row>
           <Row>
             <h2>Hi, {this.state.name}!</h2>
@@ -50,12 +60,16 @@ class Rewards extends Component {
           <Row>
             <Col md={3} className="reward img1">
               {" "}
-              <div>100 Points:</div>
-              <div>Free Small Coffee at Starbucks</div>
+              <div className="overlay">
+                <div>100 Points:</div>
+                <div>Free Small Coffee at Starbucks</div>
+              </div>
             </Col>
             <Col md={3} className="reward img2">
               {" "}
-              <div>250 Points:</div> <div>Make-A-Wish Swag Bag</div>
+              <div className="pic">
+                <div>250 Points:</div> <div>Make-A-Wish Swag Bag</div>
+              </div>
             </Col>
             <Col md={3} className="reward img3">
               {" "}
@@ -70,10 +84,7 @@ class Rewards extends Component {
               {" "}
               <div>600 Points:</div> <div>LA Ram's VIP Swag Box</div>
             </Col>
-            <Col md={3} className="reward img6">
-              {" "}
-              <div>700 Points:</div> <div>Giftbag from Dollar Shave Club</div>
-            </Col>
+            <Col md={3} className="reward img6" />
             <Col md={3} className="reward img7">
               {" "}
               <div>800 Points:</div> <div>Round Trip Ticket From Jet Blue</div>
@@ -92,7 +103,7 @@ class Rewards extends Component {
               Date
             </Col>
             <Col md={4} className="history-table">
-              Decription
+              Description
             </Col>
             <Col md={4} className="history-table">
               Points Gained
@@ -115,37 +126,31 @@ class Rewards extends Component {
             : ""}
 
           <Row>
-            <h2>Pending Assignments</h2>
+            <h2>Pending Rewards</h2>
           </Row>
           <Row>
-            <Col md={3} className="history-table">
-              Name
-            </Col>
-            <Col md={3} className="history-table">
+            <Col md={4} className="history-table">
               Date
             </Col>
-            <Col md={3} className="history-table">
+            <Col md={4} className="history-table">
               Description
             </Col>
-            <Col md={3} className="history-table">
+            <Col md={4} className="history-table">
               Reward
             </Col>
           </Row>
 
-          {this.state.events
-            ? this.state.events.map(event => (
+          {this.state.pending_rewards
+            ? this.state.pending_rewards.map(event => (
                 <Row>
-                  <Col md={3} className="reward-body">
-                    {event.name}
+                  <Col md={4} className="reward-body">
+                    <p>{event.date}</p>
                   </Col>
-                  <Col md={3} className="reward-body">
-                    {event.date}
+                  <Col md={4} className="reward-body">
+                    <p>{event.description}</p>
                   </Col>
-                  <Col md={3} className="reward-body">
-                    {event.description}
-                  </Col>
-                  <Col md={3} className="reward-body">
-                    {event.reward}
+                  <Col md={4} className="reward-body">
+                    <p>{event.point_value}</p>
                   </Col>
                 </Row>
               ))

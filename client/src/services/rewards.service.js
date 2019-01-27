@@ -7,3 +7,6 @@ export function GetData() {
 export function GetUserInfo(username) {
   return axios.get("/api/get-volunteer-data/" + username);
 }
+export function SubtractPoints(points) {
+  return axios.get("/api/subtract-points/jj92/" + points);
+}
