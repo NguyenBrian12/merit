@@ -19,7 +19,7 @@ router.get("/get-volunteer-data/:username", (req, res) => {
 
 router.post('/subtract-points/:username/:pts', (req, res) => {
   var username = req.params.username
-  var pts = req.params.points
+  var pts = req.params.pts
   volunteers.subtractPoints(username, pts).then(() => {
     res.end()
   })

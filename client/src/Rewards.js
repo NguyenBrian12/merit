@@ -1,17 +1,22 @@
 import React, { Component } from "react";
 import { Grid, Row, Col } from "react-bootstrap";
-import { GetData } from "./services/rewards.service";
-import { GetEvents } from "./services/events.service";
+import { GetData, SubtractPoints } from "./services/rewards.service";
 class Rewards extends Component {
   state = {
-    points: null,
+    points: "",
     name: "",
     pending_rewards: [],
     eventHistory: [],
+    disp_query: false,
     disp_confirm: false,
-    prize_value: 0
+    disp_reject: false,
+    prize_desc: '',
+    prize_value: ''
   };
   componentDidMount() {
+    this.getData()
+  }
+  getData() {
     GetData().then(response => {
       console.log(response);
       const data = response.data;
@@ -22,19 +27,68 @@ class Rewards extends Component {
         pending_rewards: data.pending_rewards
       });
     });
-    GetEvents().then(response => {
-      const eventData = response.data;
-      console.log(eventData);
-      this.setState({
-        events: eventData
-      });
-    });
   }
-  selectPrize(pts) {
+  selectPrize(desc, pts) {
     this.setState({
-      disp_confirm: true,
+      disp_query: true,
+      disp_reject: false,
+      disp_confirm: false,
+      prize_desc: desc,
       prize_value: pts
     })
+  }
+  renderQuery() {
+    if(this.state.disp_query)
+    return(
+      <Row><Col md={12}>
+      <div className='confirm'>
+      <div className='hspread vcenter inline'>
+      <div>Do you want to redeem {this.state.prize_desc} for {this.state.prize_value} points?</div>
+      <div>
+      <i onClick={() => this.subtractPoints()} className="fa fa-check" aria-hidden="true"></i>&nbsp;&nbsp;
+      <i onClick={() => this.closeConfirm()} className="fa fa-times" aria-hidden="true"></i>
+      </div>
+      </div>
+      </div>
+      </Col></Row>
+    )
+  }
+  renderConfirm() {
+    if(this.state.disp_confirm)
+    return(
+      <Row><Col md={12}>
+      <div className='confirm'>{this.state.prize_desc} was redeemed for {this.state.prize_value} points</div>
+      </Col></Row>
+    )
+  }
+  renderReject() {
+    if(this.state.disp_reject)
+    return(
+      <Row><Col md={12}>
+      <div className='confirm'>Insufficient points!</div>
+      </Col></Row>
+    )
+  }
+  subtractPoints() {
+    var pts = this.state.prize_value
+    if( pts <= this.state.points)
+    SubtractPoints(pts).then(() => {
+      console.log('hello')
+      this.getData()
+      this.setState({
+        disp_query: false,
+        disp_confirm: true
+      })
+    })
+    else {
+      this.setState({
+        disp_query: false,
+        disp_reject: true
+      })
+    }
+  }
+  closeConfirm() {
+    this.setState({disp_query: false})
   }
   render() {
     return (
@@ -69,9 +123,9 @@ class Rewards extends Component {
             </Col>
           </Row>
           <Row>
-            <Col md={3} className="reward img1">
+            <Col md={3} onClick={() => this.selectPrize('Starbucks Giftcard', 100)} className="reward img1">
               {" "}
-              <div onClick={() => this.selectPrize(100)} className="overlay">
+              <div className="overlay">
                 <div>100 Points:</div>
                 <div>Free Small Coffee at Starbucks</div>
               </div>
@@ -106,6 +160,9 @@ class Rewards extends Component {
               <div>Mentorship with a Make-A-Wish Executive</div>
             </Col>
           </Row>
+          {this.renderQuery()}
+          {this.renderConfirm()}
+          {this.renderReject()}
           <br/>
           <Row>
           <Col md={12}>
