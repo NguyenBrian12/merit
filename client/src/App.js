@@ -6,6 +6,7 @@ import Header from "./Header";
 import Administrator from "./Administrator";
 import Events from "./Events";
 import EventManager from "./EventManager";
+import Referrals from "./Referrals";
 
 class App extends Component {
   render() {
@@ -18,6 +19,7 @@ class App extends Component {
           <Route exact path="/administrator" component={Administrator} />
           <Route exact path="/events" component={Events} />
           <Route exact path="/eventManager" component={EventManager} />
+          <Route exact path="/referrals" component={Referrals} />
         </div>
       </BrowserRouter>
     );

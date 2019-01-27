@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var volunteers = require("../server/volunteers");
 var events = require('../server/events')
+var referral = require('../server/referral')
 
 router.get("/ping", (req, res) => {
   var data = '"pong"';
@@ -47,10 +48,27 @@ router.get('/get-events', (req, res) => {
   })
 })
 
-router.post('/add-event/:username/:id', (req, res) => {
+router.post('/add-event/:event_data', (req, res) => {
+  var d = JSON.parse(req.params.event_data)
+  events.addEvent(d).then(() => {
+    res.end()
+  })
+})
+
+router.post('/add-event-reward/:username/:id', (req, res) => {
   var username = req.params.username
   var id = req.params.id
-  volunteer.addEvent(username, id).then(() => {
+  volunteer.addEventReward(username, id).then(() => {
+    res.end()
+  })
+})
+
+router.post('/refer-friend/:username/:first_name/:last_name/:email', (req, res) => {
+  var username = req.params.username,
+      first_name = req.params.first_name,
+      last_name = req.params.last_name,
+      email = req.params.email
+  referral.referFriend(username, first_name, last_name, email).then(() => {
     res.end()
   })
 })

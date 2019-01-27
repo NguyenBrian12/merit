@@ -27,6 +27,8 @@ function addEvent(data) {
   return promise
 }
 
+exports.addEvent = addEvent
+
 function getData() {
   var promise = new Promise((resolve, reject) => {
     var db = mongo.getDB()

@@ -95,7 +95,7 @@ async function redeemReward(username, reward) {
 
 exports.redeemReward = redeemReward
 
-async function addReferral(username, firstname, lastname) {
+async function addReferralReward(username, firstname, lastname) {
   var date = util.formatDate(new Date())
   var name = firstname + ' ' + lastname
   var desc = 'referral for ' + name
@@ -104,7 +104,9 @@ async function addReferral(username, firstname, lastname) {
   await addPendingReward(username, id, date, desc, value)
 }
 
-async function addEvent(username, event_id) {
+exports.addReferralReward = addReferralReward
+
+async function addEventReward(username, event_id) {
   var event_data = await events.getEvent(event_id)
   var date = event_data.date
   var desc = event_data.name + " - " + event_data.description
@@ -112,7 +114,7 @@ async function addEvent(username, event_id) {
   await addPendingReward(username, event_id, date, desc, value)
 }
 
-exports.addEvent = addEvent
+exports.addEventReward = addEventReward
 
 function setRewardsHistory(username, rewards) {
   var promise = new Promise((resolve, reject) => {
