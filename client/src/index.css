@@ -6,6 +6,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+.nowrap {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.banner {
+  width: 100%;
+}
 .inline{
   display:inline-block
 }
@@ -158,7 +165,9 @@ a:hover {
   text-align: center;
   width: 100%;
   font-size: 20px;
-  
+}
+.reward:hover {
+  cursor:pointer;
 }
 .reward-body{
   text-align: center;
