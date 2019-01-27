@@ -25,17 +25,40 @@ class Events extends Component {
             filteredEvents.push(event);
           }
         }
-        console.log(filteredEvents);
-      });
-      this.setState({
-        events: data,
-        searched: true
+        this.setState({
+          events: filteredEvents,
+          searched: true
+        });
       });
     });
   }
+
   onSignUp = id => {
     SignUpEvent(id).then(() => {
-      this.props.history.push("/");
+      GetEvents().then(response => {
+        console.log(response);
+        const data = response.data;
+        GetData().then(response2 => {
+          const userInfo = response2.data;
+          const pendingRewards = userInfo.pending_rewards;
+          console.log(pendingRewards);
+          const eventIds = [];
+          for (let reward of pendingRewards) {
+            eventIds.push(reward.id);
+          }
+          console.log(eventIds);
+          const filteredEvents = [];
+          for (var event of data) {
+            if (!eventIds.includes(event.id)) {
+              filteredEvents.push(event);
+            }
+          }
+          this.setState({
+            events: filteredEvents,
+            searched: true
+          });
+        });
+      });
     });
   };
   render() {
@@ -60,7 +83,7 @@ class Events extends Component {
                   ? this.state.events.map(event => (
                       <tr>
                         <td>{event.name}</td>
-                        <td className="noWrap">{event.date}</td>
+                        <td className="nowrap">{event.date}</td>
                         <td>{event.description}</td>
                         <td>{event.reward}</td>
                         <td onClick={() => this.onSignUp(event.id)}>
