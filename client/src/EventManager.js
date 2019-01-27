@@ -82,7 +82,7 @@ class EventManager extends Component {
                 </div>
                 <input
                   style={{ fontSize: "18px" }}
-                  className="inline"
+                  className="inline ip2"
                   type="text"
                   name="name"
                   value={this.state.name}
@@ -95,7 +95,7 @@ class EventManager extends Component {
                 </div>
                 <input
                   style={{ fontSize: "18px" }}
-                  className="inline"
+                  className="inline ip2"
                   type="text"
                   name="date"
                   value={this.state.date}
@@ -108,7 +108,7 @@ class EventManager extends Component {
                 </div>
                 <input
                   style={{ fontSize: "18px" }}
-                  className="inline"
+                  className="inline ip2"
                   type="text"
                   name="description"
                   value={this.state.description}
@@ -121,7 +121,7 @@ class EventManager extends Component {
                 </div>
                 <input
                   style={{ fontSize: "18px" }}
-                  className="inline"
+                  className="inline ip2"
                   type="text"
                   name="reward"
                   value={this.state.reward}
@@ -130,6 +130,7 @@ class EventManager extends Component {
               </FormGroup>
               <div>
                 <button
+                  className="button"
                   style={{ fontSize: "18px" }}
                   input="button"
                   onClick={() => this.submitEvent()}
